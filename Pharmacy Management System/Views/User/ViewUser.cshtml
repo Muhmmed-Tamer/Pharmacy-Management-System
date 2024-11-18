@@ -1,0 +1,23 @@
+﻿@using Pharmacy_Management_System.File_Settings
+@using Pharmacy_Management_System.ViewModel
+@model List<User>;
+<table class="table table-hover">
+	<tr>
+		<td scope="col">User Name</td>
+		<td scope="col">Birth Of Date</td>
+		<td scope="col">Email</td>
+		<td scope="col">Phone Number</td>
+		<td scope="col">Image Of Uesr</td>
+	</tr>
+	@foreach(var Item in Model)
+	{
+		<tr class="table-success">
+			<td scope="row">@Item.UserName</td>
+			<td scope="row">@Item.BirthOfDate</td>
+			<td scope="row">@Item.Email</td>
+			<td scope="row">@Item.PhoneNumber</td>
+			<td scope="row"><img src="@Setting.FolderExtenstions/@Item.ImageURL" class="ImageOfUsers"></img></td>
+			
+		</tr>
+	}
+</table>

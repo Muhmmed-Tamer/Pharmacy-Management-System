@@ -1,0 +1,96 @@
+﻿@using Pharmacy_Management_System.ViewModel
+@model List<Medicine>
+
+@{
+    ViewData["Title"] = "AllMedicines";
+}
+
+<h1>AllMedicines</h1>
+
+<p>
+    <a asp-action="Add">Create New Medicine</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                Medicine Name
+            </th>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col">
+                Quantity
+            </th>
+            <th scope="col">
+                ExpiryDate
+            </th>
+            <th scope ="col">
+                ManufacturingDate
+            </th>
+            <th scope="col">
+                PricePerUnit
+            </th>
+            <th scope="col">
+               Store In Stock
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr class="table-success">
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.ManufacturingDate)
+            </td>
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.PricePerUnit)
+            </td>
+                <td scope ="row">    
+                @Html.DisplayFor(modelItem => item.Stock.Name) 
+                
+            </td>
+                <td scope="row">
+                <a asp-action="Edit" asp-controller="Medicine" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-controller="Medicine" asp-route-id="@item.Id" id="DeleteMedicine">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+    var DeleteItem = document.getElementById("DeleteMedicine");
+    if(DeleteItem.click){
+        <div class="modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Medicine</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are You Sure To Delete This Medicine</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Canacel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</script>

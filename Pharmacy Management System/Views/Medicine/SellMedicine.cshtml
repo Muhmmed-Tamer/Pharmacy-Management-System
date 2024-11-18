@@ -1,0 +1,28 @@
+﻿@using Pharmacy_Management_System.ViewModel
+@model SellMedicineViewModel
+@{
+    SelectList MedicineList = new SelectList(Model.Medicines,"Id","Name");
+}
+
+<form asp-action="SaveSellMedicine">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">        
+        <input list="Medicines" class="form-control" placeholder="To Search Medicine and Add To Card" name="Medicines" multiple/>
+        <datalist class="form-control" id="Medicines" style="display:none" >
+            @foreach(var Item in Model.Medicines)
+            {
+                <option value="@Item.Name" ></option>
+            }
+		</datalist>
+        <div>
+            <label asp-for="NumberOfUnits" class="control-label"></label>
+            <input asp-for="NumberOfUnits" class="form-control" />
+            <span asp-validation-for="NumberOfUnits" class="text-danger"></span>
+        </div>
+    <div class="form-group">
+        <input type="submit" value="Add To Card" class="btn btn-primary"  />
+    </div>
+</form>
+<script>
+     
+</script>
